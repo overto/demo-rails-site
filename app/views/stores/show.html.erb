@@ -1,0 +1,97 @@
+<%= tinymce %>
+
+<p id="notice"><%= notice %></p>
+
+<h3><%= @product.name %></h3>
+
+<p>
+  <% average = @product.reviews.all.average(:rating) %>
+  <% if !average.nil? %>
+      <%= (image_tag('star-icons-full.png') * average.to_i).html_safe %><%= (image_tag('star-icons-half.png') * (average % 1).round).html_safe %><%= (image_tag('star-icons-empty.png') * (10 - average).round).html_safe %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= (@product.description).html_safe %>
+</p>
+
+<p>
+  <strong>Quantity on hand:</strong>
+  <%= @product.quantity_on_hand %>
+</p>
+
+<p>
+  <strong>Selling price:</strong>
+  <%= @product.selling_price %>
+</p>
+
+<p>
+  <strong>Cost of product:</strong>
+  <%= @product.cost_of_product %>
+</p>
+
+<p>
+  <strong>Shipping weight:</strong>
+  <%= @product.shipping_weight %>
+</p>
+
+<p>
+  <strong>Thumbnail:</strong>
+  <%= image_tag @product.product_thumbnail_image_url %>
+</p>
+
+<p>
+  <strong>Fullsize image:</strong>
+  <%= image_tag @product.product_fullsize_image_url %>
+</p>
+<br/>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8 section-container-spacer">
+    <p><strong>Customer Reviews</strong></p>
+    <% @product.reviews.each do |review| %>
+        <div>
+          <p>
+          <% if !review.rating.nil? %>
+              <%= (image_tag('star-icons-full.png') * review.rating).html_safe %><%= (image_tag('star-icons-empty.png') * (10 - review.rating)).html_safe %>
+              <br/>
+          <% end %>
+          <%= time_ago_in_words(review.created_at) %> ago, <%= review.author %> wrote:<br/>
+          <p><%= (review.comment).html_safe %></p></p>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8 section-container-spacer">
+    <p><strong>Add new review</strong></p>
+    <%= form_for([@product, @product.reviews.build]) do |form| %>
+
+        <%= form.hidden_field :product_id %>
+
+        <div class="field">
+          <%= form.label :author %>
+          <%= form.text_field :author, id: :review_author %>
+        </div>
+
+        <div class="field">
+          <%= form.label :comment %>
+          <%= form.text_area :comment, id: :review_comment, class: "tinymce" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :rating %>
+          <!--<%= form.number_field :rating, id: :review_rating, in: 1..10, step: 1 %>-->
+          <%= form.select :rating, options_for_select(1..10), {prompt: "Select number of stars"} %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit class: 'btn btn-primary btn-sm' %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to 'Back', store_index_path %>

@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @article.author %>
+</p>
+
+<p>
+  <strong>Published date:</strong>
+  <%= @article.published_date %>
+</p>
+
+<p>
+  <strong>Is published:</strong>
+  <%= @article.is_published %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= (@article.content).html_safe %>
+</p>
+
+<p>
+  <strong>Author thumbnail avatar url:</strong>
+  <%= image_tag @article.author_thumbnail_avatar_url %>
+</p>
+
+<% if current_user.try(:admin?) %>
+    <%= link_to 'Edit', edit_article_path(@article) %> |
+<% end %>
+<%= link_to 'Back', articles_path %>

@@ -1,0 +1,88 @@
+<%= tinymce %>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+<h3>Blog Title:</h3>
+<strong><%= @blog.title %></strong>
+</p>
+
+<p><strong>Average Rating:</strong>
+  <% average = @blog.comments.all.average(:rating) %>
+  <% if !average.nil? %>
+      <%= (image_tag('star-icons-full.png') * average.to_i).html_safe %><%= (image_tag('star-icons-half.png') * (average % 1).round).html_safe %><%= (image_tag('star-icons-empty.png') * (5 - average).round).html_safe %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Published Date:</strong>
+  <%= @blog.published_date %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @blog.author %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= (@blog.content).html_safe %>
+</p>
+
+<br/><br/>
+
+<div class="row">
+  <div class="col-xs-12 section-container-spacer">
+    <p><strong>Blog Comments</strong></p>
+    <% @blog.comments.each do |comment| %>
+        <p>
+        <p>
+          <% if !comment.rating.nil? %>
+              <%= (image_tag('star-icons-full.png') * comment.rating).html_safe %><%= (image_tag('star-icons-empty.png') * (5 - comment.rating)).html_safe %>
+              <br/>
+          <% end %>
+          <%= time_ago_in_words(comment.created_at) %> ago, <%= comment.author %> wrote:<br/>
+        <p><%= (comment.content).html_safe %></p>
+        <% if current_user.try(:admin?) %>
+            <p><%= link_to "Remove", blog_comment_path(@blog, comment), method: :delete, data: {confirm: 'Are you sure?'} %></p>
+        <% end %>
+        </p>
+    <% end %>
+
+    <br/>
+    <p><strong>Add new comment</strong></p>
+    <%= form_for([@blog, @blog.comments.build]) do |form| %>
+
+        <%= form.hidden_field :blog_id %>
+
+        <div class="field">
+          <%= form.label :author %>
+          <%= form.text_field :author, id: :comment_author %>
+        </div>
+
+        <div class="field">
+          <%= form.label :content %>
+          <%= form.text_area :content, id: :comment_content, class: "tinymce" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :avatar_image %>
+          <%= form.text_field :avatar_image, id: :comment_avatar_image %>
+        </div>
+
+        <div class="field">
+          <%= form.label :rating %>
+          <!-- <%= form.number_field :rating, id: :comment_rating %> -->
+          <%= form.select :rating, options_for_select(1..5), {prompt: "Select number of stars"} %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit class: 'btn btn-primary btn-sm' %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>

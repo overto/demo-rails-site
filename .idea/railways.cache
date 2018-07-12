@@ -1,0 +1,102 @@
+                  Prefix Verb   URI Pattern                                      Controller#Action
+        new_user_session GET    /users/sign_in(.:format)                         devise/sessions#new
+            user_session POST   /users/sign_in(.:format)                         devise/sessions#create
+    destroy_user_session DELETE /users/sign_out(.:format)                        devise/sessions#destroy
+       new_user_password GET    /users/password/new(.:format)                    devise/passwords#new
+      edit_user_password GET    /users/password/edit(.:format)                   devise/passwords#edit
+           user_password PATCH  /users/password(.:format)                        devise/passwords#update
+                         PUT    /users/password(.:format)                        devise/passwords#update
+                         POST   /users/password(.:format)                        devise/passwords#create
+cancel_user_registration GET    /users/cancel(.:format)                          devise/registrations#cancel
+   new_user_registration GET    /users/sign_up(.:format)                         devise/registrations#new
+  edit_user_registration GET    /users/edit(.:format)                            devise/registrations#edit
+       user_registration PATCH  /users(.:format)                                 devise/registrations#update
+                         PUT    /users(.:format)                                 devise/registrations#update
+                         DELETE /users(.:format)                                 devise/registrations#destroy
+                         POST   /users(.:format)                                 devise/registrations#create
+                   users GET    /admin/users(.:format)                           users#index
+                         POST   /admin/users(.:format)                           users#create
+                new_user GET    /admin/users/new(.:format)                       users#new
+               edit_user GET    /admin/users/:id/edit(.:format)                  users#edit
+                    user GET    /admin/users/:id(.:format)                       users#show
+                         PATCH  /admin/users/:id(.:format)                       users#update
+                         PUT    /admin/users/:id(.:format)                       users#update
+                         DELETE /admin/users/:id(.:format)                       users#destroy
+                comments GET    /comments(.:format)                              comments#index
+                         POST   /comments(.:format)                              comments#create
+             new_comment GET    /comments/new(.:format)                          comments#new
+            edit_comment GET    /comments/:id/edit(.:format)                     comments#edit
+                 comment GET    /comments/:id(.:format)                          comments#show
+                         PATCH  /comments/:id(.:format)                          comments#update
+                         PUT    /comments/:id(.:format)                          comments#update
+                         DELETE /comments/:id(.:format)                          comments#destroy
+                         GET    /blogs/page/:page(.:format)                      blogs#index
+           blog_comments GET    /blogs/:blog_id/comments(.:format)               comments#index
+                         POST   /blogs/:blog_id/comments(.:format)               comments#create
+        new_blog_comment GET    /blogs/:blog_id/comments/new(.:format)           comments#new
+       edit_blog_comment GET    /blogs/:blog_id/comments/:id/edit(.:format)      comments#edit
+            blog_comment GET    /blogs/:blog_id/comments/:id(.:format)           comments#show
+                         PATCH  /blogs/:blog_id/comments/:id(.:format)           comments#update
+                         PUT    /blogs/:blog_id/comments/:id(.:format)           comments#update
+                         DELETE /blogs/:blog_id/comments/:id(.:format)           comments#destroy
+                   blogs GET    /blogs(.:format)                                 blogs#index
+                         POST   /blogs(.:format)                                 blogs#create
+                new_blog GET    /blogs/new(.:format)                             blogs#new
+               edit_blog GET    /blogs/:id/edit(.:format)                        blogs#edit
+                    blog GET    /blogs/:id(.:format)                             blogs#show
+                         PATCH  /blogs/:id(.:format)                             blogs#update
+                         PUT    /blogs/:id(.:format)                             blogs#update
+                         DELETE /blogs/:id(.:format)                             blogs#destroy
+                 puzzles GET    /puzzles(.:format)                               puzzles#index
+                         POST   /puzzles(.:format)                               puzzles#create
+              new_puzzle GET    /puzzles/new(.:format)                           puzzles#new
+             edit_puzzle GET    /puzzles/:id/edit(.:format)                      puzzles#edit
+                  puzzle GET    /puzzles/:id(.:format)                           puzzles#show
+                         PATCH  /puzzles/:id(.:format)                           puzzles#update
+                         PUT    /puzzles/:id(.:format)                           puzzles#update
+                         DELETE /puzzles/:id(.:format)                           puzzles#destroy
+                 reviews GET    /reviews(.:format)                               reviews#index
+                         POST   /reviews(.:format)                               reviews#create
+              new_review GET    /reviews/new(.:format)                           reviews#new
+             edit_review GET    /reviews/:id/edit(.:format)                      reviews#edit
+                  review GET    /reviews/:id(.:format)                           reviews#show
+                         PATCH  /reviews/:id(.:format)                           reviews#update
+                         PUT    /reviews/:id(.:format)                           reviews#update
+                         DELETE /reviews/:id(.:format)                           reviews#destroy
+                articles GET    /articles(.:format)                              articles#index
+                         POST   /articles(.:format)                              articles#create
+             new_article GET    /articles/new(.:format)                          articles#new
+            edit_article GET    /articles/:id/edit(.:format)                     articles#edit
+                 article GET    /articles/:id(.:format)                          articles#show
+                         PATCH  /articles/:id(.:format)                          articles#update
+                         PUT    /articles/:id(.:format)                          articles#update
+                         DELETE /articles/:id(.:format)                          articles#destroy
+                         GET    /products/page/:page(.:format)                   products#index
+         product_reviews GET    /products/:product_id/reviews(.:format)          reviews#index
+                         POST   /products/:product_id/reviews(.:format)          reviews#create
+      new_product_review GET    /products/:product_id/reviews/new(.:format)      reviews#new
+     edit_product_review GET    /products/:product_id/reviews/:id/edit(.:format) reviews#edit
+          product_review GET    /products/:product_id/reviews/:id(.:format)      reviews#show
+                         PATCH  /products/:product_id/reviews/:id(.:format)      reviews#update
+                         PUT    /products/:product_id/reviews/:id(.:format)      reviews#update
+                         DELETE /products/:product_id/reviews/:id(.:format)      reviews#destroy
+                products GET    /products(.:format)                              products#index
+                         POST   /products(.:format)                              products#create
+             new_product GET    /products/new(.:format)                          products#new
+            edit_product GET    /products/:id/edit(.:format)                     products#edit
+                 product GET    /products/:id(.:format)                          products#show
+                         PATCH  /products/:id(.:format)                          products#update
+                         PUT    /products/:id(.:format)                          products#update
+                         DELETE /products/:id(.:format)                          products#destroy
+               blog_show GET    /blog/:id(.:format)                              blogs#show
+           email_article GET    /email_article/:id(.:format)                     articles#email_article
+                    root GET    /                                                page#home
+               user_root GET    /user(.:format)                                  stores#index
+             store_index GET    /store(.:format)                                 stores#index
+              store_show GET    /store/:id(.:format)                             stores#show
+              contact_us GET    /contact_us(.:format)                            page#contact_us
+             preferences GET    /preferences(.:format)                           page#preferences
+               login_old GET    /login_old(.:format)                             page#login_old
+                 project GET    /project(.:format)                               page#project
+                calendar GET    /calendar((/:month)/:year)(.:format)             page#calendar
+              puzzle_pdf GET    /generate_puzzle_pdf/:id(.:format)               puzzles#generate_puzzle_pdf

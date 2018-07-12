@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  puzzle_name: MyString
+  word_list: MyText
+
+two:
+  puzzle_name: MyString
+  word_list: MyText

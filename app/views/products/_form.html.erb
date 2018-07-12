@@ -1,0 +1,65 @@
+
+<%= tinymce %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8 section-container-spacer">
+
+    <%= form_with(model: product, local: true) do |form| %>
+        <% if product.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+              <ul>
+                <% product.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="field">
+          <%= form.label :name %>
+          <%= form.text_field :name, id: :product_name %>
+        </div>
+
+        <div class="field">
+          <%= form.label :description %>
+          <%= form.text_area :description, id: :product_description, class: "tinymce" %>
+        </div>
+
+        <div class="field">
+          <%= form.label :quantity_on_hand %>
+          <%= form.number_field :quantity_on_hand, id: :product_quantity_on_hand %>
+        </div>
+
+        <div class="field">
+          <%= form.label :selling_price %>
+          <%= form.text_field :selling_price, id: :product_selling_price %>
+        </div>
+
+        <div class="field">
+          <%= form.label :cost_of_product %>
+          <%= form.text_field :cost_of_product, id: :product_cost_of_product %>
+        </div>
+
+        <div class="field">
+          <%= form.label :shipping_weight %>
+          <%= form.text_field :shipping_weight, id: :product_shipping_weight %>
+        </div>
+
+        <div class="field">
+          <%= form.label :product_thumbnail_image_url %>
+          <%= form.text_field :product_thumbnail_image_url, id: :product_product_thumbnail_image_url %>
+        </div>
+
+        <div class="field">
+          <%= form.label :product_fullsize_image_url %>
+          <%= form.text_field :product_fullsize_image_url, id: :product_product_fullsize_image_url %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit class: 'btn btn-primary btn-sm' %>
+        </div>
+    <% end %>
+  </div>
+</div>

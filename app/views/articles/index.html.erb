@@ -1,0 +1,51 @@
+<!--<p id="notice"><%= notice %></p>-->
+
+<h1>Articles</h1>
+
+<div class="row">
+  <div>
+    <%= paginate @articles %>
+  </div>
+  <div class="table-responsive col-xs-12">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Published<br/>Date</th>
+        <th>Published</th>
+        <th>Content</th>
+        <th>Author Thumbnail<br/>Avatar Url</th>
+        <th colspan="3"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @articles.each do |article| %>
+          <tr>
+            <td><%= article.title %></td>
+            <td><%= article.author %></td>
+            <td><%= article.published_date %></td>
+            <td><%= article.is_published %></td>
+            <td class="truncate"><%= (article.content).html_safe %></td>
+            <td><%= article.author_thumbnail_avatar_url %></td>
+            <td><%= link_to 'Show', article %></td>
+            <% if current_user.try(:admin?) %>
+                <td><%= link_to 'Edit', edit_article_path(article) %></td>
+                <td><%= link_to 'Destroy', article, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+                <td><%= link_to 'Email', email_article_path(article) %></td>
+            <% end %>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div>
+    <%= paginate @articles %>
+  </div>
+  <br>
+
+  <% if current_user.try(:admin?) %>
+      <%= button_to 'New Article', new_article_path, method: :get, class: "btn btn-primary btn-sm" %>
+  <% end %>
+</div>

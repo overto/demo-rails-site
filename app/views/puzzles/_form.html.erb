@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-12 col-md-8 section-container-spacer">
+
+    <%= form_with(model: puzzle, local: true) do |form| %>
+        <% if puzzle.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(puzzle.errors.count, "error") %> prohibited this puzzle from being saved:</h2>
+
+              <ul>
+                <% puzzle.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="field">
+          <%= form.label :puzzle_name %>
+          <%= form.text_field :puzzle_name, id: :puzzle_puzzle_name %>
+        </div>
+
+        <div class="field">
+          <%= form.label :word_list %>
+          <p>(Please enter each word on a new line)</p>
+          <%= form.text_area :word_list, id: :puzzle_word_list %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit class: "btn btn-primary btn-sm" %>
+        </div>
+    <% end %>
+  </div>
+</div>

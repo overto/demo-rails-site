@@ -1,0 +1,51 @@
+<!--<h1>Page#products</h1>
+<p>Find me in app/views/page/products_old.html.erb</p>-->
+
+<div class="row">
+  <div class="col-xs-12 section-container-spacer">
+    <h1>Products</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat.</p>
+  </div>
+
+  <div class="col-xs-12 section-container-spacer">
+    <table class="table">
+      <tr><th>Description</th><th>Price</th></tr>
+      <% @products.each do | description, price| %>
+          <tr>
+            <td><%= description %></td><td><%= price %></td>
+          </tr>
+      <% end %>
+    </table>
+  </div>
+
+  <div class="col-xs-12 col-md-4 section-container-spacer">
+    <%= image_tag("img-12.jpg", class: "img-responsive", alt: "" ) %>
+    <!--<img class="img-responsive" alt="" src="./assets/images/img-12.jpg">-->
+    <h2>Consectetur</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <%= link_to("Get in touch", {controller: "page", action: "contact_us"}, class:"btn btn-primary") %>
+    <!--<a href="./contact.html" class="btn btn-primary" title=""> Get in touch</a>-->
+  </div>
+
+  <div class="col-xs-12 col-md-4 section-container-spacer">
+    <%= image_tag("img-13.jpg", class: "img-responsive", alt: "" ) %>
+    <!--<img class="img-responsive" alt="" src="./assets/images/img-13.jpg">-->
+    <h2>Adipiscing</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <%= link_to("Get in touch", {controller: "page", action: "contact_us"}, class:"btn btn-primary") %>
+    <!--<a href="./contact.html" class="btn btn-primary" title=""> Get in touch</a>-->
+  </div>
+
+  <div class="col-xs-12 col-md-4 section-container-spacer">
+    <%= image_tag("img-14.jpg", class: "img-responsive", alt: "" ) %>
+    <!--<img class="img-responsive" alt="" src="./assets/images/img-14.jpg">-->
+    <h2>Dolor</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <%= link_to("Get in touch", {controller: "page", action: "contact_us"}, class:"btn btn-primary") %>
+    <!--<a href="./contact.html" class="btn btn-primary" title=""> Get in touch</a>-->
+  </div>
+
+</div>

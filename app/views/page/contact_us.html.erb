@@ -1,0 +1,101 @@
+
+<!--<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>-->
+
+<div class="row">
+  <div class="col-xs-12">
+    <div class="section-container-spacer">
+      <h1>Contact</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. <br>Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.</p>
+    </div>
+
+
+
+      <%= form_tag contact_us_path, method: :get, class: "reveal-content" do %>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+
+                <% if @name_blank %>
+                    <%= label_tag 'name', "Enter your name: (Required!) ", class: "label-danger" %>
+                    <%= text_field_tag 'name', @name, class: "form-control-error-required" %><br/>
+                <% else %>
+                    <%= label_tag 'name', "Enter your name: " %>
+                    <%= text_field_tag 'name', @name, class: "form-control" %><br/>
+                <% end %>
+
+                <% if @email_blank %>
+                    <%= label_tag 'email_address', "Enter your email address: (Required!) ", class: "label-danger" %>
+                    <%= text_field_tag 'email_address', @email_address, class: "form-control-error-required" %><br/>
+                <% else %>
+                    <%= label_tag 'email_address', "Enter your email address:" %>
+                    <%= text_field_tag 'email_address', @email_address, class: "form-control" %><br/>
+                <% end %>
+
+                <%= label_tag 'phone_number', "Enter your phone number: " %>
+                <%= phone_field_tag 'phone_number', @phone_number, class: "form-control" %><br/>
+
+                <%= label_tag 'question', "Enter your question:" %>
+                <%= text_area_tag 'question', @question, class: "form-control" %><br/>
+
+                <%= label_tag 'preferred_contact_type' %>
+                <%= radio_button_tag 'preferred_contact_type', 'phone', @contact_type == 'phone' %>
+                <%= label_tag 'contact_by_phone', " Phone" %>
+
+                <%= radio_button_tag 'preferred_contact_type', 'email', @contact_type == 'email' %>
+                <%= label_tag 'contact_by_email', " Email" %><br/>
+
+                <%= label_tag 'product_selected', "Select product: " %>
+                <%= select_tag 'products_list', options_for_select(@products_list, @product_selected), class: "form-control" %>
+                <br/>
+
+                <%= check_box_tag 'newsletter', "subscribed", @subscribed %>
+                <%= label_tag 'newsletter', " Subscribe to our newsletter" %><br/>
+
+                <%= check_box_tag 'notifications', "notify", @notify %>
+                <%= label_tag 'notifications', " Receive delicious notifications" %><br/>
+              </div>
+              <%= submit_tag 'submit question', class: "btn btn-primary btn-sm" %>
+            </div>
+
+            <div class="col-md-6">
+              <ul class="list-unstyled address-container">
+                <li>
+                <span class="fa-icon">
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                </span>
+                  + 33 9 07 45 12 65
+                </li>
+                <li>
+                <span class="fa-icon">
+                  <i class="fa fa-at" aria-hidden="true"></i>
+                </span>
+                  e-mail@mail.io
+                </li>
+                <li>
+                <span class="fa-icon">
+                  <i class="fa fa fa-map-marker" aria-hidden="true"></i>
+                </span>
+                  42 rue Moulbert 75016 Paris
+                </li>
+              </ul>
+              <h3>Follow me on social networks</h3>
+              <a href="https://www.linkedin.com/" title="" class="fa-icon">
+                <i class="fa fa-linkedin"></i>
+              </a>
+              <a href="https://twitter.com/" title="" class="fa-icon">
+                <i class="fa fa-twitter"></i>
+              </a>
+              <a href="https://dribbble.com/" title="" class="fa-icon">
+                <i class="fa fa-dribbble"></i>
+              </a>
+            </div>
+          </div>
+      <% end %>
+
+  </div>
+
+</div>

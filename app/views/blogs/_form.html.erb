@@ -1,0 +1,44 @@
+<%= tinymce %>
+
+<div class="row">
+  <div class="col-xs-12 col-md-8 section-container-spacer">
+
+    <%= form_with(model: blog, local: true) do |form| %>
+        <% if blog.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+
+              <ul>
+                <% blog.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+        <div class="field">
+          <%= form.label :title %>
+          <%= form.text_field :title, id: :blog_title %>
+        </div>
+
+        <div class="field">
+          <%= form.label :published_date %>
+          <%= form.date_select :published_date, id: :blog_published_date %>
+        </div>
+
+        <div class="field">
+          <%= form.label :author %>
+          <%= form.text_field :author, id: :blog_author %>
+        </div>
+
+        <div class="field">
+          <%= form.label :content %>
+          <%= form.text_area :content, id: :blog_content, class: "tinymce" %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit class: 'btn btn-primary btn-sm' %>
+        </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<h1>Store</h1>
+
+
+<% if current_user.try(:admin?) %>
+    <p><%= link_to 'Product Admin', products_path %></p>
+<% end %>
+
+<div class="row">
+  <div class="table-responsive col-xs-12">
+    <div>
+      <%= paginate @products %>
+    </div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Quantity<br/>On Hand</th>
+        <th>Selling<br/>Price</th>
+        <th>Shipping<br/>Weight</th>
+        <th>Thumbnail<br/>Image Url</th>
+        <th>Full size<br/>Image Url</th>
+        <th>Average<br/>Rating</th>
+        <th colspan="1"></th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @products.each do |product| %>
+          <tr>
+            <td><%= product.name %></td>
+            <td><%= (product.description).html_safe %></td>
+            <td><%= product.quantity_on_hand %></td>
+            <td><%= product.selling_price %></td>
+            <td><%= product.shipping_weight %></td>
+            <td class="truncate"><%= product.product_thumbnail_image_url %></td>
+            <td class="truncate"><%= product.product_fullsize_image_url %></td>
+            <td>
+              <% average = product.reviews.all.average(:rating) %>
+              <% if !average.nil? %>
+                  <%= average.round(1) %>
+              <% else %>
+                  No Ratings
+              <% end %>
+            </td>
+            <td><%= link_to 'Show', store_show_path(product.id) %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <div>
+      <%= paginate @products %>
+    </div>
+  </div>
+</div>

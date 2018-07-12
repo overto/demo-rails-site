@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Puzzle name:</strong>
+  <%= @puzzle.puzzle_name %>
+</p>
+
+<p>
+  <strong>Word list:</strong>
+  <%= display_words(@puzzle.word_list).html_safe %>
+</p>
+<br/>
+
+
+<%= button_to "Generate Puzzle PDF", puzzle_pdf_path, method: :get, class: "btn btn-primary btn-sm" %><br/>
+
+<% if current_user.try(:admin?) %>
+    <%= link_to 'Edit', edit_puzzle_path(@puzzle) %> |
+<% end %>
+<%= link_to 'Back', puzzles_path %>
